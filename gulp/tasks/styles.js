@@ -3,12 +3,13 @@ var gulp = require('gulp'),
     autoprefixer = require('autoprefixer'),
     cssvars = require('postcss-simple-vars'),
     nested = require('postcss-nested'),
-    importcss = require('postcss-import');
+    importcss = require('postcss-import'),
+    mixins = require('postcss-mixins');
 
 
     gulp.task('styles', function () {
         return gulp.src('./app/assets/styles/*.css')
-            .pipe(postcss([importcss, cssvars, nested, autoprefixer]))
+            .pipe(postcss([importcss, mixins, cssvars, nested, autoprefixer]))
             .on('error', function(errorInfo){
                 console.log(errorInfo.toString());
                 this.emit('end');

@@ -52,7 +52,7 @@ class Users {
     getUser(name){   
         var users = this.users;
          function findUser(user){
-        console.log("****", user.firstName, name);      
+        // console.log("****", user.firstName, name);      
 
            return user.firstName === name;
             }

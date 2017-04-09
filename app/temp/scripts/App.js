@@ -11252,20 +11252,42 @@
 	    function ModalReveal() {
 	        _classCallCheck(this, ModalReveal);
 
-	        this.triggerButton = (0, _jquery2.default)('#get-in-touch');
-	        this.modal = (0, _jquery2.default)('#modal');
+	        this.triggerButton = (0, _jquery2.default)('.open-modal');
+	        this.modal = (0, _jquery2.default)('.modal');
+	        this.closeModalButton = (0, _jquery2.default)(".modal__close");
 	        this.events();
 	    }
 
 	    _createClass(ModalReveal, [{
 	        key: 'events',
 	        value: function events() {
+	            // clicking the open modal button
 	            this.triggerButton.click(this.showModal.bind(this));
+
+	            // clicking x to close modal
+	            this.closeModalButton.click(this.hideModal.bind(this));
+
+	            // user pushes escpae key.
+	            (0, _jquery2.default)(document).keyup(this.keyPressHandler.bind(this));
 	        }
 	    }, {
 	        key: 'showModal',
 	        value: function showModal() {
-	            this.modal.addClass("modal__is-visible");
+	            console.log("hello", this);
+	            this.modal.addClass("modal--is-visible");
+	            return false;
+	        }
+	    }, {
+	        key: 'hideModal',
+	        value: function hideModal() {
+	            this.modal.removeClass("modal--is-visible");
+	        }
+	    }, {
+	        key: 'keyPressHandler',
+	        value: function keyPressHandler(e) {
+	            if (e.keyCode == 27) {
+	                this.hideModal();
+	            }
 	        }
 	    }]);
 

@@ -63,9 +63,13 @@
 /* 8 */
 /***/ function(module, exports) {
 
+	'use strict';
+
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
 	/*!
-	 * modernizr v3.3.1
-	 * Build http://modernizr.com/download?-svg-setclasses-dontmin
+	 * modernizr v3.4.0
+	 * Build https://modernizr.com/download?-svg-setclasses-dontmin
 	 *
 	 * Copyright (c)
 	 *  Faruk Ates
@@ -87,9 +91,8 @@
 	 * of control over the experience.
 	*/
 
-	;(function(window, document, undefined){
+	;(function (window, document, undefined) {
 	  var tests = [];
-	  
 
 	  /**
 	   *
@@ -101,7 +104,7 @@
 
 	  var ModernizrProto = {
 	    // The current version, dummy
-	    _version: '3.3.1',
+	    _version: '3.4.0',
 
 	    // Any settings that don't work as separate modules
 	    // can go in here as configuration.
@@ -116,7 +119,7 @@
 	    _q: [],
 
 	    // Stub these for people who are listening
-	    on: function(test, cb) {
+	    on: function on(test, cb) {
 	      // I don't really think people should do this, but we can
 	      // safe guard it a bit.
 	      // -- NOTE:: this gets WAY overridden in src/addTest for actual async tests.
@@ -124,34 +127,29 @@
 	      // but the code to *disallow* sync tests in the real version of this
 	      // function is actually larger than this.
 	      var self = this;
-	      setTimeout(function() {
+	      setTimeout(function () {
 	        cb(self[test]);
 	      }, 0);
 	    },
 
-	    addTest: function(name, fn, options) {
-	      tests.push({name: name, fn: fn, options: options});
+	    addTest: function addTest(name, fn, options) {
+	      tests.push({ name: name, fn: fn, options: options });
 	    },
 
-	    addAsyncTest: function(fn) {
-	      tests.push({name: null, fn: fn});
+	    addAsyncTest: function addAsyncTest(fn) {
+	      tests.push({ name: null, fn: fn });
 	    }
 	  };
 
-	  
-
 	  // Fake some of Object.create so we can force non test results to be non "own" properties.
-	  var Modernizr = function() {};
+	  var Modernizr = function Modernizr() {};
 	  Modernizr.prototype = ModernizrProto;
 
 	  // Leak modernizr globally when you `require` it rather than force it here.
 	  // Overwrite name so constructor name is nicer :D
 	  Modernizr = new Modernizr();
 
-	  
-
 	  var classes = [];
-	  
 
 	  /**
 	   * is returns a boolean if the typeof an obj is exactly type.
@@ -164,7 +162,7 @@
 	   */
 
 	  function is(obj, type) {
-	    return typeof obj === type;
+	    return (typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) === type;
 	  }
 	  ;
 
@@ -208,7 +206,6 @@
 	        // Run the test, or use the raw value if it's not a function
 	        result = is(feature.fn, 'function') ? feature.fn() : feature.fn;
 
-
 	        // Set each of the names on the Modernizr object
 	        for (nameIdx = 0; nameIdx < featureNames.length; nameIdx++) {
 	          featureName = featureNames[nameIdx];
@@ -224,7 +221,6 @@
 	            Modernizr[featureNameSplit[0]] = result;
 	          } else {
 	            // cast to a Boolean, if not one already
-	            /* jshint -W053 */
 	            if (Modernizr[featureNameSplit[0]] && !(Modernizr[featureNameSplit[0]] instanceof Boolean)) {
 	              Modernizr[featureNameSplit[0]] = new Boolean(Modernizr[featureNameSplit[0]]);
 	            }
@@ -247,7 +243,6 @@
 	   */
 
 	  var docElement = document.documentElement;
-	  
 
 	  /**
 	   * A convenience helper to check if the document we are running in is an SVG document
@@ -257,7 +252,6 @@
 	   */
 
 	  var isSVG = docElement.nodeName.toLowerCase() === 'svg';
-	  
 
 	  /**
 	   * setClasses takes an array of class names and adds them to the root element
@@ -287,37 +281,39 @@
 	    if (Modernizr._config.enableClasses) {
 	      // Add the new classes
 	      className += ' ' + classPrefix + classes.join(' ' + classPrefix);
-	      isSVG ? docElement.className.baseVal = className : docElement.className = className;
+	      if (isSVG) {
+	        docElement.className.baseVal = className;
+	      } else {
+	        docElement.className = className;
+	      }
 	    }
-
 	  }
 
 	  ;
-	/*!
-	{
-	  "name": "SVG",
-	  "property": "svg",
-	  "caniuse": "svg",
-	  "tags": ["svg"],
-	  "authors": ["Erik Dahlstrom"],
-	  "polyfills": [
-	    "svgweb",
-	    "raphael",
-	    "amplesdk",
-	    "canvg",
-	    "svg-boilerplate",
-	    "sie",
-	    "dojogfx",
-	    "fabricjs"
-	  ]
-	}
-	!*/
-	/* DOC
-	Detects support for SVG in `<embed>` or `<object>` elements.
-	*/
+	  /*!
+	  {
+	    "name": "SVG",
+	    "property": "svg",
+	    "caniuse": "svg",
+	    "tags": ["svg"],
+	    "authors": ["Erik Dahlstrom"],
+	    "polyfills": [
+	      "svgweb",
+	      "raphael",
+	      "amplesdk",
+	      "canvg",
+	      "svg-boilerplate",
+	      "sie",
+	      "dojogfx",
+	      "fabricjs"
+	    ]
+	  }
+	  !*/
+	  /* DOC
+	  Detects support for SVG in `<embed>` or `<object>` elements.
+	  */
 
 	  Modernizr.addTest('svg', !!document.createElementNS && !!document.createElementNS('http://www.w3.org/2000/svg', 'svg').createSVGRect);
-
 
 	  // Run each test
 	  testRunner();
@@ -336,9 +332,7 @@
 	  // Leak Modernizr namespace
 	  window.Modernizr = Modernizr;
 
-
-	;
-
+	  ;
 	})(window, document);
 
 /***/ },
@@ -2012,7 +2006,7 @@
 				running = false;
 			};
 
-			return function(fn){
+			var rafBatch = function(fn){
 				if(running){
 					fn.apply(this, arguments);
 				} else {
@@ -2024,6 +2018,10 @@
 					}
 				}
 			};
+
+			rafBatch._lsFlush = run;
+
+			return rafBatch;
 		})();
 
 		var rAFIt = function(fn, simple){
@@ -2045,7 +2043,7 @@
 			var running;
 			var lastTime = 0;
 			var gDelay = 125;
-			var RIC_DEFAULT_TIMEOUT = 999;
+			var RIC_DEFAULT_TIMEOUT = 666;
 			var rICTimeout = RIC_DEFAULT_TIMEOUT;
 			var run = function(){
 				running = false;
@@ -2067,7 +2065,7 @@
 			return function(isPriority){
 				var delay;
 				if((isPriority = isPriority === true)){
-					rICTimeout = 66;
+					rICTimeout = 44;
 				}
 
 				if(running){
@@ -2134,7 +2132,7 @@
 			var currentExpand = 0;
 
 			var isLoading = 0;
-			var lowRuns = 0;
+			var lowRuns = -1;
 
 			var resetPreloading = function(e){
 				isLoading--;
@@ -2184,17 +2182,17 @@
 
 					if(preloadExpand == null){
 						if(!('expand' in lazySizesConfig)){
-							lazySizesConfig.expand = docElem.clientHeight > 500 ? 500 : 400;
+							lazySizesConfig.expand = docElem.clientHeight > 500 && docElem.clientWidth > 500 ? 500 : 370;
 						}
 
 						defaultExpand = lazySizesConfig.expand;
 						preloadExpand = defaultExpand * lazySizesConfig.expFactor;
 					}
 
-					if(currentExpand < preloadExpand && isLoading < 1 && lowRuns > 3 && loadMode > 2){
+					if(currentExpand < preloadExpand && isLoading < 1 && lowRuns > 2 && loadMode > 2 && !document.hidden){
 						currentExpand = preloadExpand;
 						lowRuns = 0;
-					} else if(loadMode > 1 && lowRuns > 2 && isLoading < 6){
+					} else if(loadMode > 1 && lowRuns > 1 && isLoading < 6){
 						currentExpand = defaultExpand;
 					} else {
 						currentExpand = shrinkExpand;
@@ -2436,7 +2434,11 @@
 						setTimeout(onload, 20000);
 					}
 
-					throttledCheckElements(lazyloadElems.length > 0);
+					if(lazyloadElems.length){
+						checkElements();
+					} else {
+						throttledCheckElements();
+					}
 				},
 				checkElems: throttledCheckElements,
 				unveil: unveilElement

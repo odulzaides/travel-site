@@ -1,12 +1,11 @@
-import $ from 'jquery';
 import MobileMenu from './modules/MobileMenu';
-import RevealOnScroll from '../scripts/modules/RevealOnScroll';
+import RevealOnScroll from './modules/RevealOnScroll';
+import $ from 'jquery';
 import StickyHeader from './modules/StickyHeader';
-import ModalReveal from './modules/ModalReveal';
+import Modal from './modules/Modal';
 
-const test = new MobileMenu();
-new RevealOnScroll($('.feature-item'), "85%");
-new RevealOnScroll($('.testimonial'), '60%');
+var mobileMenu = new MobileMenu();
+new RevealOnScroll($(".feature-item"), "85%");
+new RevealOnScroll($(".testimonial"), "60%");
 var stickyHeader = new StickyHeader();
-
-var showModal = new ModalReveal();
+var modal = new Modal();

@@ -1,13 +1,13 @@
 .primary-nav {
   padding-top: 10px;
- 
-@mixin atMedium {
-  padding-top: 0px;
-}
+
+  @mixin atMedium {
+    padding-top: 0;
+  }
+
   &--pull-right {
-    
-    @mixin atMedium{
-    float: right;
+    @mixin atMedium {
+      float: right;
     }
   }
 
@@ -19,20 +19,17 @@
 
   li {
     list-style: none;
-    display:inline-block;
-    padding-right:7px;
-    /*background: $mainBlue;*/
-
+    display: inline-block;
+    padding-right: 7px;
     @mixin atMedium {
-    padding-right: 20px;
-    float: left;
-    display:block;
-    background:transparent;
+      padding-right: 20px;
+      float: left;
+      display: block;
     }
   }
+
   li:last-child {
     padding-right: 0;
-
     @mixin atMedium {
       padding-right: 20px;
     }
@@ -43,18 +40,18 @@
     font-weight: 300;
     text-decoration: none;
     display: block;
-    padding:5px 8px;
+    padding: 5px 8px;
     font-size: .8rem;
-    background-color: rgba($mainBlue, .7);
+    background-color: rgba($mainBlue, .5);
 
-    @mixin atMedium{
-    padding: 12px 0;
-    font-size:1rem;
-    background-color:transparent;
-    &.is-current-link{
-      color:#fabb69;
-    }
+    @mixin atMedium {
+      font-size: 1rem;
+      padding: 12px 0;
+      background-color: transparent;
 
+      &.is-current-link {
+        color: #fabb69;
+      }
     }
   }
 }

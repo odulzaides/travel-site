@@ -5,24 +5,22 @@
   z-index: 2;
   transition: background-color .3s ease-out;
 
-
-   &--is-expanded {
+  &--is-expanded {
     background-color: rgba($mainBlue, .55);
   }
+  
   @mixin atMedium {
-    position:fixed;
+    position: fixed;
     background-color: rgba($mainBlue, .3);
 
     &--dark {
-      background-color: rgba(23,51,72, .85);
+      background-color: rgba(23, 51, 72, .85);
     }
   }
 
   &__btn-container {
-    
     @mixin atMedium {
-    float: right;
-
+      float: right;
     }
   }
 
@@ -31,8 +29,8 @@
     top: 0;
     left: 50%;
     transform: translateX(-50%) scale(.8);
-    transform-origin: 50% 0;
     transition: transform .3s ease-out;
+    transform-origin: 50% 0;
     background-color: $mainBlue;
     padding: 25px 36px;
 
@@ -41,7 +39,7 @@
       transform: translateX(0);
 
       .site-header--dark & {
-        transform:scale(.55);
+        transform: scale(.57);
       }
     }
   }
@@ -53,46 +51,44 @@
   &__menu-icon {
     width: 20px;
     height: 19px;
-    /*background-color: #FFF;*/
     position: absolute;
+    z-index: 10;
     top: 10px;
     right: 10px;
-    z-index: 10;
 
-    &::before{
-      content:"";
-      position:absolute;
-      top:0;
-      left:0;
-      width:20px;
-      height:3px;      
-      background-color:#fff;
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 20px;
+      height: 3px;
+      background-color: #FFF;
       transform-origin: 0 0;
-      transition:transform .3s ease-out;
+      transition: transform .3s ease-out;
     }
 
     &__middle {
-      position:absolute;
-      top:8px;
-      left:0;
-      width:20px;
-      height:3px;
-      background-color:#fff;
-      transition:all .3sec ease-out;
-      transform-origin:0 50%;
+      position: absolute;
+      top: 8px;
+      left: 0;
+      width: 20px;
+      height: 3px;
+      background-color: #FFF;
+      transition: all .3s ease-out;
+      transform-origin: 0 50%;
     }
 
-     &::after {
-      content:"";
-      position:absolute;
-      bottom:0;
-      left:0;
-      width:20px;
-      height:3px;
-      background-color:#fff;
-      transform-origin: 0 100% ;
-      transition:transform .3s ease-out;
-
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 20px;
+      height: 3px;
+      background-color: #FFF;
+      transform-origin: 0 100%;
+      transition: transform .3s ease-out;
     }
 
     @mixin atMedium {
@@ -100,43 +96,41 @@
     }
   }
 
- &__menu-icon--close-x {
+  &__menu-icon--close-x {
+    &::before {
+      transform: rotate(45deg) scaleX(1.25);
+    }
 
-   &::before{
-    transform:rotate(45deg) scaleX(1.25);
-   }
-   
-   .site-header__menu-icon__middle {
-     opacity:0;
-     transform: scaleX(0);
-   }
+    .site-header__menu-icon__middle {
+      opacity: 0;
+      transform: scaleX(0);
+    }
 
-   &::after {
-    transform:rotate(-45deg) scaleX(1.25) translateY(1px);
-   
-   }
- }
+    &::after {
+      transform: rotate(-45deg) scaleX(1.25) translateY(1px);
+    }
+  }
 
   &__menu-content {
-    opacity:0;
-    transform: scale(1.2);    
+    opacity: 0;
+    transform: scale(1.2);
     transition: all .3s ease-out;
-    position:relative;
-    z-index:-10;
-    padding-top:90px;
+    position: relative;
+    z-index: -10;
+    padding-top: 90px;
     text-align: center;
 
     @mixin atMedium {
       opacity: 1;
-      z-index:1;
-      padding-top:0;
-      transform:scale(1);
-    }
-    &--is-visible{
-      opacity:1;
       z-index: 1;
-      transform:scale(1);
+      padding-top: 0;
+      transform: scale(1);
+    }
+
+    &--is-visible {
+      opacity: 1;
+      z-index: 1;
+      transform: scale(1);
     }
   }
- 
 }

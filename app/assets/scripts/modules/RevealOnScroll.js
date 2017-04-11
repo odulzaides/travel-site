@@ -4,6 +4,7 @@ import smoothScroll from 'jquery-smooth-scroll';
 
 class RevealOnScroll {
     constructor(els, offset) {
+        this.lazyImages = $('.lazyload');
         this.itemsToReveal = els;
         this.offsetPercentage = offset;
         this.pageSections = $('.page-section');

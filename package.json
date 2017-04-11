@@ -4,6 +4,7 @@
   "dependencies": {
     "jquery": "^2.2.3",
     "jquery-smooth-scroll": "^2.1.2",
+    "lazysizes": "^2.0.0",
     "normalize.css": "^4.1.1",
     "setprototypeof": "^1.0.1",
     "waypoints": "^4.0.1"

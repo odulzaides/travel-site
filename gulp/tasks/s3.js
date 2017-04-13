@@ -18,7 +18,7 @@ gulp.task('publish', function () {
         // ... 
     };
 
-    return gulp.src('./app/**/*.*')
+    return gulp.src('./dist/**/*.*')
         // gzip, Set Content-Encoding headers and add .gz extension 
         .pipe(awspublish.gzip({ ext: '' }))
 
